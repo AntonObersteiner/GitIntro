@@ -1,0 +1,95 @@
+source: https://www.slideshare.net/bcbbslides/introduction-to-git-and-github-72514916
+
+Wozu?
+	Versionen und Änderungen speichern, alte Zustände wiederherstellen
+	Verschiedene Änderungen vergleichen und zusammenführen
+
+Was tut man: Dateien/Änderungen verschieben
+	working → "add" → stage → "commit" → repo
+	repo → "checkout" → working
+	local → "push" → remote
+	local ← "pull" ← remote
+
+	Befehle: `git ...`
+		init	neues GitRepo anlegen
+		status	Was ist neu in Working und Stage
+		log 	vergangene Commits/Änderungen
+		add 	Dateien/Änderungen hinzufügen (zu Stage)
+		commit	aktuelle Stage zusammenfassen und abspeichern
+		diff	Unterschiede zwischen Repo und Working
+		rm		Datei löschen (muss man committen)
+		mv		Datei umbenennen (muss man committen)
+
+		checkout	Commit/Dateien aus Repo in Working laden
+		reset HEAD	aus Stage in Working schieben
+		branch	Ideen ausprobieren -> erstmal nicht den Hauptzweig zuschreiben
+		merge	Änderungen in aktuellen Branch übernehmen
+
+		remote	Online-repository anbinden
+		clone	remote lokal kopieren (in Ordner ohne Git)
+		fetch	remote anfragen
+		pull	remote in lokal mergen
+		push	lokal in remote mergen
+		fork	eigene Kopie von Repo erstellen
+		"pull request"	fremdem Repo Änderung vorschlagen
+
+	status
+		zeigt working und stage an
+		Dateien, die man nie committen oder nicht mehr updaten möchte,
+			in ".gitignore" im Hauptordner schreiben (auch *.txt etc.)
+	add <files> (etwas grob)
+		-p (feiner, einzelne Änderungen)
+	commit
+		-m "<message>"
+		im Präsens, eine kurze Zeile,
+			eventuell eine leere Zeile und eine längere Erklärung
+		ohne -m: einfacher Editor wird aufgerufen
+			bessere Eingabe
+	log
+		--graph (verschiedene branches)
+		--online, ...
+		--decorate
+		--all
+	diff
+		--staged (Repo vs Stage)
+		<file> (nur Datei vergleichen)
+		<branch1>..<branch2>
+
+	HEAD
+		neuster Commit des Branches
+
+	branch
+		(auflisten)
+	checkout -b <name> (neuen Branch erstellen und hingehen)
+		(zwischen Branches wechseln setzt voraus, dass Working clean ist
+			=> alles committed oder zumindest keine Widersprüche)
+		--move <old> <new>
+		-d <anderen> (<anderen> branch löschen, der vollständig gemerged ist)
+		-D <anderen> (<anderen> branch löschen, ohne Rücksicht auf Verluste)
+
+	merge <anderen>
+		(immer <anderen> in aktuellen HEAD (neuesten))
+		"fast-forward": <anderer> ist neuer als HEAD,
+			kann "aufgepflanzt werden"
+		"recursive": neues aus beiden zusammenführen
+			"conflict": kann nicht von Git entschieden werden
+			3 Möglichkeiten
+				1: git merge --abort
+				2: Datei richtig schreiben
+					"<<< HEAD ... >>> anderer" muss entfernt werden
+				3: merge tool (atom, Plugins, ...)
+		can be hard!
+			merge often, with good tools
+			small commits with good names
+			viele separate Branches, die nach ihrem Merge wieder wegkommen
+				nicht wiederverwenden, sondern löschen und neu erstellen
+
+	remote add <alias> <URL>
+		<alias> = origin (fast immer)
+		<URL> online-repo (endet auf .git)
+
+	fetch origin
+		check if new things have happend on remote
+		do this always before pull or push
+	push origin <branch>
+		lokale Änderungen auf remote hochladen

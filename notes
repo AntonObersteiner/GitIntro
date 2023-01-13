@@ -94,3 +94,53 @@ Was tut man: Dateien/Änderungen verschieben
 	push origin <branch>
 		lokale Änderungen auf remote hochladen
 notizen
+
+installiert git (suchmaschine)
+erstellt euch auf github.com einen Account 
+	(wenn ihr noch keinen habt)
+einer erstellt ein repo (
+	git init
+	git status
+	git add file.txt
+	git status
+	git commit -m "sinnvolle nachricht"
+	git status
+	notfalls git config --global user.email "gthub email"
+	notfalls git config --global user.name "githubname"
+	#eine committete Datei ändern
+	git status
+	git diff
+	git add -p
+	git diff --staged
+	git commit -m "datei ... geändert"
+	git log
+	git push    #kein ssh-key
+	#auf GitHub.com ein neues repo erstellen
+	#Sektion „aus bestehendem Repo“
+	cd ~/.ssh
+	ssh-keygen
+	ls
+	cat id_rsa.pub   #druckt euren öffentlichen key
+	#auf github.com unter euren Account-settings SSH-Key hinzufügen
+	dann sollte git push vor vorher funktionieren
+	#jetzt merge konlikt erzeugen :)
+	git branch test1
+	git status
+	git checkout test1   #jetzt auf anderem branch
+	#Datei ändern, add, commit
+	git log
+	git status
+	git checkout master  #oder main
+	#selbe datei anders ändern: add, commit, status, log
+	git merge test1   #jemand hat von meinem Codechen gegessen
+
+
+)
+der andere clont das (Seite des Repos, „Code“ -> per ssh clonen: git clone)
+branch
+
+
+
+legt neuen branch an
+ändert notes, lest, fragt
+mergt die änderungen in master, löscht den branch
